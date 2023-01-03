@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('cardapio');
 });
 
 // Route::get('/','DashboardController@index');

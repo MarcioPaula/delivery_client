@@ -5,33 +5,22 @@
     <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
       <img src="{{ url('assets/images/logo-mini.svg') }}" alt="logo" /> </a>
   </div>
-  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+  <div class="navbar-menu-wrapper d-flex align-items-center">
     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
       <span class="mdi mdi-menu"></span>
     </button>
     <ul class="navbar-nav navbar-nav-left header-links">
-      <li class="nav-item d-none d-xl-flex">
-        <a href="#" class="nav-link">Schedule <span class="badge badge-primary ml-1">New</span>
-        </a>
-      </li>
-      <li class="nav-item active d-none d-lg-flex">
-        <a href="#" class="nav-link">
-          <i class="mdi mdi-elevation-rise"></i>Reports</a>
-      </li>
-      <li class="nav-item d-none d-md-flex">
-        <a href="#" class="nav-link">
-          <i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
-      </li>
       <li class="nav-item dropdown d-none d-lg-flex">
-        <a class="nav-link dropdown-toggle px-0" id="quickDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> Quick Links </a>
+        <a class="nav-link dropdown-toggle px-0" id="quickDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> Categorias </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown pt-3" aria-labelledby="quickDropdown">
-          <a href="#" class="dropdown-item">Schedule <span class="badge badge-primary ml-1">New</span></a>
-          <a href="#" class="dropdown-item"><i class="mdi mdi-elevation-rise"></i>Reports</a>
-          <a href="#" class="dropdown-item"><i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
+          <a href="#lanches" class="dropdown-item">Lanches</a>
+          <a href="#pizzas" class="dropdown-item">Pizzas</a>
+          <a href="#bebidas" class="dropdown-item">Bebidas</a>
+          <a href="#frios" class="dropdown-item">Frios <span class="badge badge-primary ml-1">Novo</span></a>
         </div>
       </li>
     </ul>
-    <ul class="navbar-nav navbar-nav-right">
+    <!--<ul class="navbar-nav navbar-nav-right">
       <li class="nav-item dropdown">
         <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
           <i class="mdi mdi-file-outline"></i>
@@ -132,9 +121,11 @@
           <a class="dropdown-item"> Sign Out </a>
         </div>
       </li>
-    </ul>
+    </ul>-->
     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
       <span class="mdi mdi-menu icon-menu"></span>
     </button>
+
   </div>
+
 </nav>
