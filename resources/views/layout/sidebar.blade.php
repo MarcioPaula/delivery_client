@@ -33,27 +33,27 @@ function show_class($path) {
               <span class="menu-title">Meus pedidos</span>
           </a>
       </li>
-      <!--   <li class="nav-item {{ active_class(['basic-ui/*']) }}">
-      <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
-        <i class="menu-icon mdi mdi-dna"></i>
-        <span class="menu-title">Basic UI Elements</span>
+     <li class="nav-item {{ active_class(['categorias/*']) }}">
+      <a class="nav-link" data-toggle="collapse" href="#categorias" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
+        <i class="menu-icon mdi mdi-food-fork-drink"></i>
+        <span class="menu-title">Categorias</span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse {{ show_class(['basic-ui/*']) }}" id="basic-ui">
+      <div class="collapse {{ show_class(['categorias/*']) }}" id="categorias">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item {{ active_class(['basic-ui/buttons']) }}">
-            <a class="nav-link" href="{{ url('/basic-ui/buttons') }}">Buttons</a>
+          <li class="nav-item {{ active_class(['categorias/comidas']) }}">
+            <a class="nav-link" href="#comidas">Comidas</a>
           </li>
-          <li class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
-            <a class="nav-link" href="{{ url('/basic-ui/dropdowns') }}">Dropdowns</a>
-          </li>
-          <li class="nav-item {{ active_class(['basic-ui/typography']) }}">
-            <a class="nav-link" href="{{ url('/basic-ui/typography') }}">Typography</a>
-          </li>
+            <li class="nav-item {{ active_class(['categorias/comidas']) }}">
+                <a class="nav-link" href="#bebidas">Bebidas</a>
+            </li>
+            <li class="nav-item {{ active_class(['categorias/comidas']) }}">
+                <a class="nav-link" href="#frios">Frios <span class="badge badge-primary ml-1">Novo</span></a>
+            </li>
         </ul>
       </div>
     </li>
-
+      <!--
 <li class="nav-item {{ active_class(['user-pages/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#user-pages" aria-expanded="{{ is_active_route(['user-pages/*']) }}" aria-controls="user-pages">
         <i class="menu-icon mdi mdi-lock-outline"></i>

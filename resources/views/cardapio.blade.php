@@ -5,88 +5,148 @@
 @endpush
 
 @section('content')
-<div class="row">
-  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-    <div class="card card-statistics">
-      <div class="card-body">
-        <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
 
-              <img src="{{asset('assets/images/produtos/x-tudo.png')}}" width="100" height="100" alt="">
+    <link rel="stylesheet" href="{{asset('css/cardapio.css')}}">
 
-          <div class="float-right">
-            <p class="font-weight-medium right mb-0">X-tudo</p>
-              <h4 class="font-weight-medium right mb-0">R$ 25,00</h4>
-              <p class="mb-0 text-left">Delicioso x-tudo com salcicha dupla</p>
-          </div>
-
-
-        </div>
-          <div>
-          <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
-              </p>  </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-    <div class="card card-statistics">
-      <div class="card-body">
-        <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
-          <div class="float-left">
-            <i class="mdi mdi-receipt text-warning icon-lg"></i>
-          </div>
-          <div class="float-right">
-            <p class="mb-0 text-right">Orders</p>
-            <div class="fluid-container">
-              <h3 class="font-weight-medium text-right mb-0">3455</h3>
+    <div id="comidas"><h3>Comidas</h3></div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="food-card food-card--vertical">
+                <div class="food-card_img">
+                    <img src="{{asset('assets/images/produtos/x-tudo.png')}}" alt="">
+                    <a href="#!"><i class="fa fa-heart"></i></a>
+                </div>
+                <div class="food-card_content">
+                    <div class="food-card_title-section">
+                        <a href="#!" class="food-card_title">Double Cheese Potato Burger</a>
+                        <p class="food-card_author">Xtudo, com hamburguer, salcicha e ovos, acompanha molho.</p>
+                    </div>
+                    <div class="food-card_bottom-section">
+                        <hr>
+                        <div class="space-between">
+                            <div class="food-card_price">
+                                <span>5.99R$</span>
+                            </div>
+                            <div class="food-card_order-count">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend" style="margin-left: -50px !important;">
+                                        <button class="btn btn-outline-secondary minus-btn" type="button" id="button-addon1"><i class="mdi mdi-minus"></i></button>
+                                    </div>
+                                    <input type="text" class="form-control input-manulator" placeholder=""  aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary add-btn" type="button" id="button-addon1"><i class="mdi mdi-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
-          <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-    <div class="card card-statistics">
-      <div class="card-body">
-        <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
-          <div class="float-left">
-            <i class="mdi mdi-poll-box text-success icon-lg"></i>
-          </div>
-          <div class="float-right">
-            <p class="mb-0 text-right">Sales</p>
-            <div class="fluid-container">
-              <h3 class="font-weight-medium text-right mb-0">5693</h3>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="food-card food-card--vertical">
+                <div class="food-card_img">
+                    <img src="{{asset('assets/images/produtos/pizza.png')}}" alt="">
+                    <a href="#!"><i class="fa fa-heart"></i></a>
+                </div>
+                <div class="food-card_content">
+                    <div class="food-card_title-section">
+                        <a href="#!" class="food-card_title">Pizza calabresa com muçarela</a>
+                        <p class="food-card_author">Deliciosa pizza de calabresa com muçarela, regada de oregaco e com tomate.</p>
+                    </div>
+                    <div class="food-card_bottom-section">
+                        <hr>
+                        <div class="space-between">
+                            <div class="food-card_price">
+                                <span>5.99R$</span>
+                            </div>
+                            <div class="food-card_order-count" >
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend" style="margin-left: -50px !important;">
+                                        <button class="btn btn-outline-secondary minus-btn" type="button" id="button-addon1"><i class="mdi mdi-minus"></i></button>
+                                    </div>
+                                    <input type="text" class="form-control input-manulator" placeholder=""  aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary add-btn" type="button" id="button-addon1"><i class="mdi mdi-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
-          <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Sales </p>
-      </div>
     </div>
-  </div>
-  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-    <div class="card card-statistics">
-      <div class="card-body">
-        <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
-          <div class="float-left">
-            <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
-          </div>
-          <div class="float-right">
-            <p class="mb-0 text-right">Employees</p>
-            <div class="fluid-container">
-              <h3 class="font-weight-medium text-right mb-0">246</h3>
-            </div>
-          </div>
-        </div>
-        <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
-          <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales </p>
-      </div>
-    </div>
-  </div>
-</div>
+    <div id="bebidas"><h3>Bebidas</h3></div>
+    <div class="row">
 
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="food-card food-card--vertical">
+                <div class="food-card_img">
+                    <img src="{{asset('assets/images/produtos/guarana.png')}}" alt="">
+                    <a href="#!"><i class="fa fa-heart"></i></a>
+                </div>
+                <div class="food-card_content">
+                    <div class="food-card_title-section">
+                        <a href="#!" class="food-card_title">Refrigerante</a>
+                        <p class="food-card_author">Guaraná Antartica.</p>
+                    </div>
+                    <div class="food-card_bottom-section">
+                        <hr>
+                        <div class="space-between">
+                            <div class="food-card_price">
+                                <span>5.99R$</span>
+                            </div>
+                            <div class="food-card_order-count" >
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend float-right" style="margin-left: -50px !important;">
+                                        <button class="btn btn-outline-secondary minus-btn" type="button" id="button-addon1"><i class="mdi mdi-minus"></i></button>
+                                    </div>
+                                    <input type="text" class="form-control input-manulator" placeholder=""  aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary add-btn" type="button" id="button-addon1"><i class="mdi mdi-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="food-card food-card--vertical">
+                <div class="food-card_img">
+                    <img src="{{asset('assets/images/produtos/agua.png')}}" alt="">
+                    <a href="#!"><i class="fa fa-heart"></i></a>
+                </div>
+                <div class="food-card_content">
+                    <div class="food-card_title-section">
+                        <a href="#!" class="food-card_title">Água mineral</a>
+                        <p class="food-card_author">Água sem gás.</p>
+                    </div>
+                    <div class="food-card_bottom-section">
+                        <hr>
+                        <div class="space-between">
+                            <div class="food-card_price">
+                                <span>5.99R$</span>
+                            </div>
+                            <div class="food-card_order-count" >
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend" style="margin-left: -50px !important;">
+                                        <button class="btn btn-outline-secondary minus-btn" type="button" id="button-addon1"><i class="mdi mdi-minus"></i></button>
+                                    </div>
+                                    <input type="text" class="form-control input-manulator" placeholder=""  aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary add-btn" type="button" id="button-addon1"><i class="mdi mdi-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('plugin-scripts')
