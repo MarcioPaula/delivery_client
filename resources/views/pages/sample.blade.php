@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-
+oi
 @endsection
 
 @push('plugin-scripts')

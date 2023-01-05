@@ -21,14 +21,14 @@ function show_class($path) {
       <div class="nav-link">
       </div>
     </li>
-    <li class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link" href="{{ url('/') }}">
+    <li class="nav-item {{ active_class([$empresa.'/cardapio']) }}">
+      <a class="nav-link" href="{{ url($empresa.'/cardapio') }}">
         <i class="menu-icon mdi mdi-food"></i>
         <span class="menu-title">Cardapio</span>
       </a>
     </li>
-      <li class="nav-item {{ active_class(['/pedidos']) }}">
-          <a class="nav-link" href="{{ url('/pedidos') }}">
+      <li class="nav-item {{ active_class([$empresa.'/pedidos']) }}">
+          <a class="nav-link" href="{{ url($empresa.'/pedidos') }}">
               <i class="menu-icon mdi mdi-basket"></i>
               <span class="menu-title">Meus pedidos</span>
           </a>
