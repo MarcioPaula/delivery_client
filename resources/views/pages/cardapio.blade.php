@@ -5,6 +5,7 @@
 @endpush
 
 @section('content')
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="{{asset('css/cardapio.css')}}">
@@ -12,32 +13,32 @@
 
     <div id="comidas"><h3>Comidas</h3></div>
     <div class="row">
-        @for($i=0;$i < 4;$i++)
+        @foreach($produtos as $produto)
         <div class="col-sm-6 col-md-6 col-lg-6">
             <div class="food-card food-card--vertical">
                 <div class="food-card_img">
-                    <img src="{{asset('assets/images/produtos/x-tudo.png')}}" alt="">
+                    <img src="{{asset('assets/images/produtos/'.$produto->produto.'.png')}}" alt="">
                     <a href="#!"><i class="fa fa-heart"></i></a>
                 </div>
                 <div class="food-card_content">
                     <div class="food-card_title-section">
-                        <a href="#!" class="food-card_title">Double Cheese Potato Burger {{$i}}</a>
-                        <p class="food-card_author">Xtudo, com hamburguer, salcicha e ovos, acompanha molho.</p>
+                        <a href="#!" class="food-card_title">{{$produto->produto}}</a>
+                        <p class="food-card_author">{{$produto->descricao}}</p>
                     </div>
                     <div class="food-card_bottom-section">
                         <hr>
                         <div class="space-between">
                             <div class="food-card_price">
-                                <span>5.90R$</span>
+                                <span>R${{$produto->valor}}</span>
                             </div>
                             <div class="food-card_order-count">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend" style="margin-left: -50px !important;">
-                                        <button class="btn btn-outline-secondary minus-btn" onclick="RemItem{{$i}}()" type="button" id="target"><i class="mdi mdi-minus"></i></button>
+                                        <button class="btn btn-outline-secondary minus-btn" onclick="RemItem{{$produto->id}}()" type="button" id="target"><i class="mdi mdi-minus"></i></button>
                                     </div>
-                                    <input type="text" class="form-control input-manulator" placeholder="" readonly id="tot_item{{$i}}" aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
+                                    <input type="text" class="form-control input-manulator" placeholder="" readonly id="tot_item{{$produto->id}}" aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary add-btn" onclick="AddItem{{$i}}()" type="button" id="button-addon1"><i class="mdi mdi-plus"></i></button>
+                                        <button class="btn btn-outline-secondary add-btn" onclick="AddItem{{$produto->id}}()" type="button" id="button-addon1"><i class="mdi mdi-plus"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -47,28 +48,38 @@
             </div>
         </div>
             <script>
-                var item{{$i}} = 0
+                var item{{$produto->id}} = 0
                 var total_item = 0
+                document.cookie='total_item=0';
                 var fin_botao = false;
-                function RemItem{{$i}}(){
-                    if (item{{$i}} > 0){
-                        item{{$i}}-=1;
+                function RemItem{{$produto->id}}(){
+                    if (item{{$produto->id}} > 0){
+                        item{{$produto->id}}-=1;
                         if (total_item > 0)
                         {
                             total_item-=1;
+                            $('item{{$produto->id}}').last().remove()
+
+                            document.cookie='total_item='+total_item;
+                            $("#total_ped").text(total_item) ;
                         }
                         if (total_item === 0)
                         {
                             desativa_botao()
                         }
-                        $("#tot_item{{$i}}").val(item{{$i}}) ;
+                        $("#tot_item{{$produto->id}}").val(item{{$produto->id}}) ;
                     }
                 }
-                function AddItem{{$i}}(){
+                function AddItem{{$produto->id}}(){
 
-                    item{{$i}}+=1;
+                    item{{$produto->id}}+=1;
                     total_item+=1;
-                    $("#tot_item{{$i}}").val(item{{$i}}) ;
+                    $('itens_cart').append
+                    ("<item{{$produto->id}}><a class= 'dropdown-item preview-item'><div class='preview-thumbnail'><img src='{{ url('assets/images/produtos/'.$produto->produto.'.png') }}' alt='image' class='img-sm profile-pic'></div><div class='preview-item-content flex-grow py-2'><span>{{$produto->produto}}</span><p class='font-weight-light small-text'> {{ $produto->descricao}}</p></div></a></item{{$produto->id}}>")
+
+                    document.cookie='total_item='+total_item;
+                    $("#total_ped").text(total_item) ;
+                    $("#tot_item{{$produto->id}}").val(item{{$produto->id}}) ;
                     if (total_item > 0)
                     {
                         ativa_botao()
@@ -82,116 +93,11 @@
                 {
                     document.getElementById('fin_button').style.visibility = "hidden";
                 }
-            </script>
 
-      @endfor
+            </script>
+        @endforeach
             <button class="btn btn-lg btn-success fixed-bottom" id="fin_button"  style="position: fixed;visibility: hidden">FINALIZAR PEDIDO</button>
 
-
-
-       <!-- <div class="col-sm-6 col-md-6 col-lg-6">
-            <div class="food-card food-card--vertical">
-                <div class="food-card_img">
-                    <img src="{{asset('assets/images/produtos/pizza.png')}}" alt="">
-                    <a href="#!"><i class="fa fa-heart"></i></a>
-                </div>
-                <div class="food-card_content">
-                    <div class="food-card_title-section">
-                        <a href="#!" class="food-card_title">Pizza calabresa com muçarela</a>
-                        <p class="food-card_author">Deliciosa pizza de calabresa com muçarela, regada de oregaco e com tomate.</p>
-                    </div>
-                    <div class="food-card_bottom-section">
-                        <hr>
-                        <div class="space-between">
-                            <div class="food-card_price">
-                                <span>5.99R$</span>
-                            </div>
-                            <div class="food-card_order-count" >
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend" style="margin-left: -50px !important;">
-                                        <button class="btn btn-outline-secondary minus-btn" onclick="RemItem()" type="button" id="button-addon1"><i class="mdi mdi-minus"></i></button>
-                                    </div>
-                                    <input type="text" class="form-control input-manulator" placeholder="" id="tot_item" aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary add-btn"  onclick="AddItem()" type="button" id="button-addon1"><i class="mdi mdi-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="bebidas"><h3>Bebidas</h3></div>
-    <div class="row">
-
-        <div class="col-sm-6 col-md-6 col-lg-6">
-            <div class="food-card food-card--vertical">
-                <div class="food-card_img">
-                    <img src="{{asset('assets/images/produtos/guarana.png')}}" alt="">
-                    <a href="#!"><i class="fa fa-heart"></i></a>
-                </div>
-                <div class="food-card_content">
-                    <div class="food-card_title-section">
-                        <a href="#!" class="food-card_title">Refrigerante</a>
-                        <p class="food-card_author">Guaraná Antartica.</p>
-                    </div>
-                    <div class="food-card_bottom-section">
-                        <hr>
-                        <div class="space-between">
-                            <div class="food-card_price">
-                                <span>5.99R$</span>
-                            </div>
-                            <div class="food-card_order-count" >
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend float-right" style="margin-left: -50px !important;">
-                                        <button class="btn btn-outline-secondary minus-btn" type="button" id="button-addon1"><i class="mdi mdi-minus"></i></button>
-                                    </div>
-                                    <input type="text" class="form-control input-manulator" placeholder=""  aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary add-btn" type="button" id="button-addon1"><i class="mdi mdi-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-6">
-            <div class="food-card food-card--vertical">
-                <div class="food-card_img">
-                    <img src="{{asset('assets/images/produtos/agua.png')}}" alt="">
-                    <a href="#!"><i class="fa fa-heart"></i></a>
-                </div>
-                <div class="food-card_content">
-                    <div class="food-card_title-section">
-                        <a href="#!" class="food-card_title">Água mineral</a>
-                        <p class="food-card_author">Água sem gás.</p>
-                    </div>
-                    <div class="food-card_bottom-section">
-                        <hr>
-                        <div class="space-between">
-                            <div class="food-card_price">
-                                <span>5.99R$</span>
-                            </div>
-                            <div class="food-card_order-count" >
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend" style="margin-left: -50px !important;">
-                                        <button class="btn btn-outline-secondary minus-btn" type="button" id="button-addon1"><i class="mdi mdi-minus"></i></button>
-                                    </div>
-                                    <input type="text" class="form-control input-manulator" placeholder=""  aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary add-btn" type="button" id="button-addon1"><i class="mdi mdi-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 @endsection
 

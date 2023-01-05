@@ -6,6 +6,8 @@
 
 @section('content')
 oi
+
+    {{\Illuminate\Support\Facades\Session::getId()}}
 @endsection
 
 @push('plugin-scripts')

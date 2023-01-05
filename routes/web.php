@@ -1,14 +1,12 @@
 <?php
-
+use App\Http\Controllers\clientController;
 //Redireciona para cardapio
 Route::get('/{empresa}',function ($empresa){
     return redirect()->route('cardapio',$empresa);
 });
 
 //Pagina cardápio utilizando prefixo da empresa
-Route::get('/{empresa}/cardapio', function ($empresa) {
-    return view('pages.cardapio',compact('empresa'));
-})->name('cardapio');
+Route::get('/{empresa}/cardapio/',[clientController::class, 'cardapio'])->name('cardapio');
 
 //Pagina meus pedidos
 Route::get('/{empresa}/pedidos', function ($empresa) {
