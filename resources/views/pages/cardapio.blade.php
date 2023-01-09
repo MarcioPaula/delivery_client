@@ -9,11 +9,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="{{asset('css/cardapio.css')}}">
-
-
+    <form action='{{route('pedido')}}' id='pedidos' method='post'>
+        {{csrf_field()}}
     <div id="comidas"><h3>Comidas</h3></div>
     <div class="row">
         @foreach($produtos as $produto)
+            <div id="{{$produto->produto}}"  ></div>
         <div class="col-sm-6 col-md-6 col-lg-6">
             <div class="food-card food-card--vertical">
                 <div class="food-card_img">
@@ -33,7 +34,7 @@
                             </div>
                             <div class="food-card_order-count">
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend" style="margin-left: -50px !important;">
+                                    <div class="input-group-prepend" style="margin-left: -70px !important;">
                                         <button class="btn btn-outline-secondary minus-btn" onclick="RemItem{{$produto->id}}()" type="button" id="target"><i class="mdi mdi-minus"></i></button>
                                     </div>
                                     <input type="text" class="form-control input-manulator" placeholder="" readonly id="tot_item{{$produto->id}}" aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
@@ -47,6 +48,7 @@
                 </div>
             </div>
         </div>
+
             <script>
                 var item{{$produto->id}} = 0
                 var total_item = 0
@@ -59,6 +61,7 @@
                         {
                             total_item-=1;
                             $('item{{$produto->id}}').last().remove()
+                            $('produto{{$produto->id}}').last().remove()
 
                             document.cookie='total_item='+total_item;
                             $("#total_ped").text(total_item) ;
@@ -74,8 +77,14 @@
 
                     item{{$produto->id}}+=1;
                     total_item+=1;
+                    //Manda itens para o carrinho
                     $('itens_cart').append
                     ("<item{{$produto->id}}><a class= 'dropdown-item preview-item'><div class='preview-thumbnail'><img src='{{ url('assets/images/produtos/'.$produto->produto.'.png') }}' alt='image' class='img-sm profile-pic'></div><div class='preview-item-content flex-grow py-2'><span>{{$produto->produto}}</span><p class='font-weight-light small-text'> {{ $produto->descricao}}</p></div></a></item{{$produto->id}}>")
+
+                    //adiciona inputs ao dos itens ao form
+                    $('form').append
+                    ("<produto{{$produto->id}}><input hidden type='text'  name='produto[]' value='{{$produto->produto}}'>" +
+                    "<input type='text' hidden name='valor[]' value='{{$produto->valor}}'></produto{{$produto->id}}>")
 
                     document.cookie='total_item='+total_item;
                     $("#total_ped").text(total_item) ;
@@ -95,8 +104,11 @@
                 }
 
             </script>
+
         @endforeach
-            <button class="btn btn-lg btn-success fixed-bottom" id="fin_button"  style="position: fixed;visibility: hidden">FINALIZAR PEDIDO</button>
+            <button type="submit" form="pedidos" class="btn btn-lg btn-success fixed-bottom" id="fin_button"  style="position: fixed;visibility: hidden">FINALIZAR PEDIDO</input>
+
+    </form>
 
     </div>
 @endsection

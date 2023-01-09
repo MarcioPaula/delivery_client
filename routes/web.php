@@ -19,7 +19,10 @@ Route::get('/clear-cache', function() {
     return "Cache is cleared";
 });
 
+//Pagina meus pedidos
+Route::post('/pedido', [clientController::class, 'pedido'])->name('pedido');
+
 // 404 for undefined routes
 Route::any('/{page?}',function(){
-    return View::make('Página não encontrada');
+    return view('pages.error');
 })->where('page','.*');

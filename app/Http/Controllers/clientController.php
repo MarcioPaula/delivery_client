@@ -12,4 +12,9 @@ class clientController extends Controller
        $produtos = DB::table('produtos')->get();
        return view('pages.cardapio',compact('empresa','produtos'));
     }
+
+    public function pedido(Request $req)
+    {
+        return $req;
+    }
 }
