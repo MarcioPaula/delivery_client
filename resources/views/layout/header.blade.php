@@ -19,7 +19,7 @@
       <input class="form-control" list="products" onchange="location = this.value;" placeholder="Pesquisar produto" type="text">
       <datalist id="products">
           @foreach($produtos as $produto)
-          <option value="#{{$produto->produto}}">{{$produto->produto}}</option>
+          <option value="#{{$produto['nome']}}">{{$produto['nome']}}</option>
           @endforeach
       </datalist>
 

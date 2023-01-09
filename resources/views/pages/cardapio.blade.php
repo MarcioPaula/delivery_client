@@ -14,32 +14,32 @@
     <div id="comidas"><h3>Comidas</h3></div>
     <div class="row">
         @foreach($produtos as $produto)
-            <div id="{{$produto->produto}}"  ></div>
+            <div id="{{$produto['nome']}}"  ></div>
         <div class="col-sm-6 col-md-6 col-lg-6">
             <div class="food-card food-card--vertical">
                 <div class="food-card_img">
-                    <img src="{{asset('assets/images/produtos/'.$produto->produto.'.png')}}" alt="">
+                    <img src="{{asset('assets/images/produtos/'.$produto['nome'].'.png')}}" alt="">
                     <a href="#!"><i class="fa fa-heart"></i></a>
                 </div>
                 <div class="food-card_content">
                     <div class="food-card_title-section">
-                        <a href="#!" class="food-card_title">{{$produto->produto}}</a>
-                        <p class="food-card_author">{{$produto->descricao}}</p>
+                        <a href="#!" class="food-card_title">{{$produto['nome']}}</a>
+                        <p class="food-card_author">{{$produto['descricao']}}</p>
                     </div>
                     <div class="food-card_bottom-section">
                         <hr>
                         <div class="space-between">
                             <div class="food-card_price">
-                                <span>R${{$produto->valor}}</span>
+                                <span>R${{$produto['valor_unitario']}}</span>
                             </div>
                             <div class="food-card_order-count">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend" style="margin-left: -70px !important;">
-                                        <button class="btn btn-outline-secondary minus-btn" onclick="RemItem{{$produto->id}}()" type="button" id="target"><i class="mdi mdi-minus"></i></button>
+                                        <button class="btn btn-outline-secondary minus-btn" onclick="RemItem{{$produto['id']}}()" type="button" id="target"><i class="mdi mdi-minus"></i></button>
                                     </div>
-                                    <input type="text" class="form-control input-manulator" placeholder="" readonly id="tot_item{{$produto->id}}" aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
+                                    <input type="text" class="form-control input-manulator" placeholder="" readonly id="tot_item{{$produto['id']}}" aria-label="Example text with button addon" maxlength="2" aria-describedby="button-addon1" value="0">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary add-btn" onclick="AddItem{{$produto->id}}()" type="button" id="button-addon1"><i class="mdi mdi-plus"></i></button>
+                                        <button class="btn btn-outline-secondary add-btn" onclick="AddItem{{$produto['id']}}()" type="button" id="button-addon1"><i class="mdi mdi-plus"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -50,18 +50,18 @@
         </div>
 
             <script>
-                var item{{$produto->id}} = 0
+                var item{{$produto['id']}} = 0
                 var total_item = 0
                 document.cookie='total_item=0';
                 var fin_botao = false;
-                function RemItem{{$produto->id}}(){
-                    if (item{{$produto->id}} > 0){
-                        item{{$produto->id}}-=1;
+                function RemItem{{$produto['id']}}(){
+                    if (item{{$produto['id']}} > 0){
+                        item{{$produto['id']}}-=1;
                         if (total_item > 0)
                         {
                             total_item-=1;
-                            $('item{{$produto->id}}').last().remove()
-                            $('produto{{$produto->id}}').last().remove()
+                            $('item{{$produto['id']}}').last().remove()
+                            $('produto{{$produto['id']}}').last().remove()
 
                             document.cookie='total_item='+total_item;
                             $("#total_ped").text(total_item) ;
@@ -70,25 +70,25 @@
                         {
                             desativa_botao()
                         }
-                        $("#tot_item{{$produto->id}}").val(item{{$produto->id}}) ;
+                        $("#tot_item{{$produto['id']}}").val(item{{$produto['id']}}) ;
                     }
                 }
-                function AddItem{{$produto->id}}(){
+                function AddItem{{$produto['id']}}(){
 
-                    item{{$produto->id}}+=1;
+                    item{{$produto['id']}}+=1;
                     total_item+=1;
                     //Manda itens para o carrinho
                     $('itens_cart').append
-                    ("<item{{$produto->id}}><a class= 'dropdown-item preview-item'><div class='preview-thumbnail'><img src='{{ url('assets/images/produtos/'.$produto->produto.'.png') }}' alt='image' class='img-sm profile-pic'></div><div class='preview-item-content flex-grow py-2'><span>{{$produto->produto}}</span><p class='font-weight-light small-text'> {{ $produto->descricao}}</p></div></a></item{{$produto->id}}>")
+                    ("<item{{$produto['id']}}><a class= 'dropdown-item preview-item'><div class='preview-thumbnail'><img src='{{ url('assets/images/produtos/'.$produto['nome'].'.png') }}' alt='image' class='img-sm profile-pic'></div><div class='preview-item-content flex-grow py-2'><span>{{$produto['nome']}}</span><p class='font-weight-light small-text'> {{$produto['descricao']}}</p></div></a></item{{$produto['id']}}>")
 
                     //adiciona inputs ao dos itens ao form
                     $('form').append
-                    ("<produto{{$produto->id}}><input hidden type='text'  name='produto[]' value='{{$produto->produto}}'>" +
-                    "<input type='text' hidden name='valor[]' value='{{$produto->valor}}'></produto{{$produto->id}}>")
+                    ("<produto{{$produto['id']}}><input hidden type='text'  name='produto[]' value='{{$produto['nome']}}'>" +
+                    "<input type='text' hidden name='valor[]' value='{{$produto['valor_unitario']}}'></produto{{$produto['id']}}>")
 
                     document.cookie='total_item='+total_item;
                     $("#total_ped").text(total_item) ;
-                    $("#tot_item{{$produto->id}}").val(item{{$produto->id}}) ;
+                    $("#tot_item{{$produto['id']}}").val(item{{$produto['id']}}) ;
                     if (total_item > 0)
                     {
                         ativa_botao()
